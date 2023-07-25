@@ -1,12 +1,10 @@
 #include "main.h"
 
 /**
- *  _puts - prints a string
- *@str: string pointer
- *Return: always zero
+ * _puts - prints a string followed by a newline
+ * @str: pointer to the string
+ * Return: should be void
  */
-
-
 
 void _puts(char *str)
 {
@@ -15,6 +13,5 @@ void _puts(char *str)
 		_putchar(*str);
 		str++;
 	}
-	putchar('\n');
+	_putchar('\n');
 }
-
