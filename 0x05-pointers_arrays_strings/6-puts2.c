@@ -3,7 +3,7 @@
 /**
  * puts2 - prints every other character in a string
  * @str: pointer to the string
- * Return: always zero
+ * Return: void
  */
 
 void puts2(char *str)
