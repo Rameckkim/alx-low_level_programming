@@ -1,14 +1,15 @@
 #include "main.h"
 #include <stddef.h>
 #include <stdio.h>
+
 /**
- *print-array - prints integer array
+ * print_array - Function to print the elements of an integer array
  * @a: Pointer to the integer array
  * @n: Number of elements to be printed
- *Return: always zero
+ *
+ * Return: void (no return value)
  */
 void print_array(int *a, int n)
-
 {
 	if (n <= 0 || a == NULL)
 		return;
@@ -38,23 +39,28 @@ void print_array(int *a, int n)
 				buffer[idx++] = num % 10 + '0';
 				num /= 10;
 			}
-
+			/* Print the digits in reverse order */
 			while (idx > 0)
 			{
 				putchar(buffer[--idx]);
 			}
 		}
 	}
-
-	putchar('\n');
 }
 
+/**
+ * main - Entry point of the program
+ *
+ * Return: Always 0 (Success)
+ */
 int main(void)
 {
-	int array[] = {1, 2, 3, 4, 5};
-	int size = sizeof(array) / sizeof(array[0]);
+	/* Example usage of the print_array function */
+	int arr[] = {45, -102, 0, 67, -789};
+	int size = sizeof(arr) / sizeof(arr[0]);
 
-	print_array(array, size);
+	print_array(arr, size);
+	putchar('\n');
 
 	return (0);
 }
