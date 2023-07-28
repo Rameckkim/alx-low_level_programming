@@ -1,28 +1,42 @@
+#include <unistd.h>
+
 /**
- * print_number - Prints an integer using _putchar function.
+ * print_number - Prints an integer.
  * @n: The integer to be printed.
- *
- * Return: void.
  */
 void print_number(int n)
 {
-	/* Handle the case of negative numbers */
-	if (n < 0)
+	char digit;
+	int divisor = 1;
+	int is_negative = 0;
+
+	if (n == 0)
 	{
-		_putchar('-');
-		n = -n; /* Convert the number to positive */
+		write(1, "0", 1);
+		return;
 	}
 
-	/* Handle the case of single-digit or zero numbers */
-	if (n >= 0 && n <= 9)
+	if (n < 0)
 	{
-		_putchar('0' + n);
+		is_negative = 1;
+		n = -n;
 	}
-	else
+
+	/* Calculate the divisor to extract digits */
+	while (n / divisor != 0)
+		divisor *= 10;
+
+	/* Handle the negative sign */
+	if (is_negative)
+		write(1, "-", 1);
+
+	/* Extract and print each digit */
+	while (divisor > 1)
 	{
-		/* Recursively print each digit in reverse order */
-		print_number(n / 10);
-		_putchar('0' + n % 10);
+		divisor /= 10;
+		digit = (n / divisor) + '0';
+		write(1, &digit, 1);
+		n %= divisor;
 	}
 }
 
