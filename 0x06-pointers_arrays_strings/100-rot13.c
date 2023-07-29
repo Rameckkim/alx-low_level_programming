@@ -1,48 +1,51 @@
-#include <stdlib.h>
-#include <string.h>
+#include <stdio.h>
 
 /**
  * rot13 - Encodes a string using ROT13 encryption.
  * @input: The input string to be encoded.
  *
- * Return: A pointer to the dynamically allocated encoded string.
- *         If the input string is NULL or memory allocation fails, it returns NULL.
+ * Return: A pointer to the encoded string.
  */
 char *rot13(char *input)
 {
-	if (input == NUL)L
-		return (NULL); /* Return NULL if the input string is NULL */
+	char rot13_map[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
-	/* Allocate memory for the encoded string, adding 1 for the null-terminator */
-	char *encoded = (char *)malloc(strlen(input) + 1);
-	if (encoded == NULL)
-		return (NULL); /* Return NULL if memory allocation fails */
+	char *ptr = input;
 
-	int i = 0;
-	int len = strlen(input);
+	char *original = input;
 
-	while (i < len)
+	while (*ptr)
 	{
-		char ch = input[i];
-
-		/* Check if the character is an uppercase or lowercase letter */
-		if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z'))
+		if ((*ptr >= 'A' && *ptr <= 'Z') || (*ptr >= 'a' && *ptr <= 'z'))
 		{
-			/* Apply ROT13 encoding on the character */
-			if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'm'))
-				encoded[i] = ch + 13; /* Shift forward by 13 positions */
-			else
-				encoded[i] = ch - 13; /* Shift backward by 13 positions */
+			char offset = (*ptr >= 'a') ? 'a' : 'A';
+			*ptr = rot13_map[*ptr - offset];
 		}
-		else
-		{
-			encoded[i] = ch; /* Non-letter characters remain unchanged */
-		}
-
-		i++;
+		ptr++;
 	}
 
-	encoded[i] = '\0'; /* Null-terminate the encoded string */
-	return (encoded);
+	ptr = original;
+
+	while (*ptr)
+	{
+		putchar(*ptr);
+		ptr++;
+	}
+
+	return (original);
+}
+
+/**
+ * main - Entry point of the program.
+ *
+ * Return: Always 0.
+ */
+int main(void)
+{
+	char str[] = "Hello, World!";
+	printf("Original: ");
+	rot13(str);
+	putchar('\n');
+	return (0);
 }
 
