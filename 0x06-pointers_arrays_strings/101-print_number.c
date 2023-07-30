@@ -1,6 +1,6 @@
 #include "main.h"
-#include <unistd.h>
 
+int _putchar(char c);
 
 /**
  * print_number - Prints an integer.
@@ -8,37 +8,39 @@
  */
 void print_number(int n)
 {
-	char digit;
 	int divisor = 1;
-	int is_negative = 0;
+	int digit;
+	int negative = 0;
 
+	/* Handle the special case of 0 */
 	if (n == 0)
 	{
-		write(1, "0", 1);
+		_putchar('0');
 		return;
 	}
 
+	/* Handle negative numbers */
 	if (n < 0)
 	{
-		is_negative = 1;
+		negative = 1;
 		n = -n;
 	}
 
-	/* Calculate the divisor to extract digits */
-	while (n / divisor != 0)
+	/* Find the divisor to get the leftmost digit */
+	while (n / divisor >= 10)
 		divisor *= 10;
 
-	/* Handle the negative sign */
-	if (is_negative)
-		write(1, "-", 1);
-
-	/* Extract and print each digit */
-	while (divisor > 1)
+	/* Print the digits */
+	while (divisor > 0)
 	{
-		divisor /= 10;
-		digit = (n / divisor) + '0';
-		write(1, &digit, 1);
+		digit = n / divisor;
+		_putchar(digit + '0');
 		n %= divisor;
+		divisor /= 10;
 	}
+
+	/* Print the negative sign if necessary */
+	if (negative)
+		_putchar('-');
 }
 
