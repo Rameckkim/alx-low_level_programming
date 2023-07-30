@@ -1,51 +1,34 @@
-#include <stdio.h>
+#include "main.h"
+#include <stddef.h>
 
 /**
- * rot13 - Encodes a string using ROT13 encryption.
- * @input: The input string to be encoded.
+ * rot13 - Encodes a string using the ROT13 algorithm.
+ * @str: The input string to be encoded.
  *
- * Return: A pointer to the encoded string.
+ * Return: A pointer to the modified input string.
  */
-char *rot13(char *input)
+char *rot13(char *str)
 {
-	char rot13_map[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+	if (str == NULL)
+		return (NULL);
 
-	char *ptr = input;
+	char *ptr = str;
 
-	char *original = input;
-
-	while (*ptr)
+	for (; *ptr != '\0'; ptr++)
 	{
-		if ((*ptr >= 'A' && *ptr <= 'Z') || (*ptr >= 'a' && *ptr <= 'z'))
+		char c = *ptr;
+
+		if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
 		{
-			char offset = (*ptr >= 'a') ? 'a' : 'A';
-			*ptr = rot13_map[*ptr - offset];
+			if ((c >= 'A' && c <= 'M') || (c >= 'a' && c <= 'm'))
+				c += 13;
+			else
+				c -= 13;
 		}
-		ptr++;
+
+		*ptr = c;
 	}
 
-	ptr = original;
-
-	while (*ptr)
-	{
-		putchar(*ptr);
-		ptr++;
-	}
-
-	return (original);
-}
-
-/**
- * main - Entry point of the program.
- *
- * Return: Always 0.
- */
-int main(void)
-{
-	char str[] = "Hello, World!";
-	printf("Original: ");
-	rot13(str);
-	putchar('\n');
-	return (0);
+	return (str);
 }
 
