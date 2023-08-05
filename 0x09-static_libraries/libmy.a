@@ -1,0 +1,75 @@
+#ifndef MAIN_H
+#define MAIN_H
+
+/* Function prototypes */
+int _putchar(char c);
+int _islower(int c);
+int _isalpha(int c);
+int _abs(int n);
+int _isdigit(int c);
+int _strlen(char *s);
+void _puts(char *s);
+char *_strcpy(char *dest, char *src);
+int _atoi(char *s);
+char *_strcat(char *dest, char *src);
+char *_strncat(char *dest, char *src, int n);
+int _strcmp(char *s1, char *s2);
+char *_memset(char *s, char b, unsigned int n);
+char *_strchr(char *s, char c);
+char *_strstr(char *haystack, char *needle);
+
+#endif /* MAIN_H */
+
+#include "main.h"
+
+/**
+ * _putchar - Writes a character to the standard output (stdout)
+ * @c: The character to be written
+ *
+ * Return: On success, returns the character written.
+ * On error, returns -1 and sets errno.
+ */
+int _putchar(char c)
+{
+    /* Implementation for _putchar */
+}
+
+/**
+ * _islower - Checks whether a character is lowercase.
+ * @c: The character to be checked
+ *
+ * Return: 1 if c is lowercase, 0 otherwise.
+ */
+int _islower(int c)
+{
+    /* Implementation for _islower */
+}
+
+/**
+ * _isalpha - Checks whether a character is an alphabetic character.
+ * @c: The character to be checked
+ *
+ * Return: 1 if c is an alphabetic character, 0 otherwise.
+ */
+int _isalpha(int c)
+{
+    /* Implementation for _isalpha */
+}
+
+/* Implementations for the other functions follow the same style */
+
+#include "main.h"
+
+/**
+ * main - Entry point
+ *
+ * Description: Prints a quote using the _puts function.
+ * Return: Always 0 (Success)
+ */
+int main(void)
+{
+    /* Call the _puts function to display the quote */
+    _puts("\"At the end of the day, my goal was to be the best hacker\"\n\t- Kevin Mitnick");
+    return (0);
+}
+
