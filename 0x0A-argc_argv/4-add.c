@@ -2,10 +2,10 @@
 #include <stdlib.h>
 
 /**
- * main - enters arguments
- * @argc: enters argument count
- * @argv: enters argument
- * Return: zero
+ * main - adds arguments
+ * @argc: argument count
+ * @argv: argument vector
+ * Return: 0 is succesful and 1 if error
  */
 
 int main(int argc, char *argv[])
