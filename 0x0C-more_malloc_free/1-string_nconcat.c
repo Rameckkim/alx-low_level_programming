@@ -22,7 +22,9 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	size_t total_len = len1 + (n < len2 ? n : len2) + 1;
 
 	char *result = (char *)malloc(total_len);
+
 	if (!result)
+
 		return (NULL);
 
 	strcpy(result, s1);
