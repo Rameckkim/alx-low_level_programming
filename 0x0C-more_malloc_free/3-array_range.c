@@ -10,18 +10,16 @@
  */
 int *array_range(int min, int max)
 {
-	int *arr;
-	int size, i;
-
 	if (min > max)
 		return (NULL);
 
-	size = max - min + 1;
-	arr = (int *)malloc(size * sizeof(int));
+	int *arr = malloc((max - min + 1) * sizeof(int));
+
 	if (!arr)
+
 		return (NULL);
 
-	for (i = 0; i < size; i++)
+	for (int i = 0; i <= max - min; i++)
 		arr[i] = min + i;
 
 	return (arr);
@@ -32,13 +30,12 @@ int main(void)
 	int *arr;
 	int min = 5;
 	int max = 15;
-	int i;
 
 	arr = array_range(min, max);
 
 	if (arr)
 	{
-		for (i = 0; i <= max - min; i++)
+		for (int i = 0; i <= max - min; i++)
 			printf("%d ", arr[i]);
 		printf("\n");
 
