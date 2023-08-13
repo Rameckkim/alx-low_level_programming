@@ -1,54 +1,40 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "main.h"
 
 /**
- * string_nconcat - Concatenates two strings with a limit on the second string
- * @s1: The first string
- * @s2: The second string
- * @n: The maximum number of bytes to concatenate from s2
- *
- * Return: A pointer to the concatenated string, or NULL on failure
+ * *string_nconcat - concentes 2 strings
+ * @s1: string 1
+ * @s2: string 2
+ * @n: n bytes
+ * Return: the pointer to new allocated memmory, NULL if no space in memory
  */
+
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	if (!s1)
-		s1 = "";
-	if (!s2)
-		s2 = "";
+	char *p;
+	int i, len, len2;
+	unsigned int j;
 
-	size_t len1 = strlen(s1);
-	size_t len2 = strlen(s2);
-	size_t total_len = len1 + (n < len2 ? n : len2) + 1;
-
-	char *result = (char *)malloc(total_len);
-
-	if (!result)
-
+	for (i = 0; s1[i] != '\0'; i++)
+		len++;
+	if (n == 0)
+	{
+		p = malloc(sizeof(char) * len + 1);
+		if (p == NULL)
+			return (NULL);
+		for (i = 0; i < len; i++)
+			p[i] = s1[i];
+		p[i] = '\0';
+		return (p);
+	}
+	for (j = 0; s2[j] != '\0' && j <= n; j++)
+		len2++;
+	p = malloc(sizeof(char) * (len +  len2 + 1));
+	if (p == NULL)
 		return (NULL);
-
-	strcpy(result, s1);
-	strncat(result, s2, n);
-
-	return (result);
+	for (i = 0; i < len; i++)
+		p[i] = s1[i];
+	for (j = 0; j < (unsigned int) len2; j++)
+		p[i + j] = s2[j];
+	p[i + j] = '\0';
+	return (p);
 }
-
-int main(void)
-{
-	char *s1 = "Hello, ";
-	char *s2 = "World!";
-	char *concatenated = string_nconcat(s1, s2, 5);
-
-	if (concatenated)
-	{
-		printf("Concatenated string: %s\n", concatenated);
-		free(concatenated);
-	}
-	else
-	{
-		printf("Memory allocation failed.\n");
-	}
-
-	return (0);
-}
-
